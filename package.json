@@ -1,0 +1,6 @@
+{
+"type": "module",
+  "dependencies": {
+    "@reclaimprotocol/zk-fetch": "^0.3.1"
+  }
+}
