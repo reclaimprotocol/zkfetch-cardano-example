@@ -1,22 +1,22 @@
-import { Lucid, Blockfrost } from "https://deno.land/x/lucid@0.10.11/mod.ts";
+import { Blockfrost, Lucid } from "https://deno.land/x/lucid@0.10.11/mod.ts";
 
 async function main() {
   let lucid = await Lucid.new(
     new Blockfrost(
       "https://cardano-preprod.blockfrost.io/api/v0",
-      "preprodGccWf5cqtgX4hp0kTJIV4KJQ81xwjLLx"
+      "preprodGccWf5cqtgX4hp0kTJIV4KJQ81xwjLLx",
     ),
-    "Preprod"
+    "Preprod",
   );
 
   const addressDetails = JSON.parse(
-    await Deno.readTextFile("addressDetails.json")
+    await Deno.readTextFile("addressDetails.json"),
   );
   const proof = JSON.parse(await Deno.readTextFile("proof.json"));
 
   lucid = lucid.selectWalletFromPrivateKey(addressDetails.privateKey);
 
-  console.log(proof.identifier.substring(2))
+  console.log(proof.identifier.substring(2));
   const metadata = {
     1: proof.identifier.substring(2),
     2: proof.extractedParameterValues.price,

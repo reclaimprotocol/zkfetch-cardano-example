@@ -1,4 +1,4 @@
-import { Lucid, Blockfrost } from "https://deno.land/x/lucid@0.10.11/mod.ts";
+import { Blockfrost, Lucid } from "https://deno.land/x/lucid@0.10.11/mod.ts";
 
 import fs from "node:fs";
 
@@ -11,9 +11,9 @@ async function main() {
   const lucid = await Lucid.new(
     new Blockfrost(
       "https://cardano-preprod.blockfrost.io/api/v0",
-      "preprodGccWf5cqtgX4hp0kTJIV4KJQ81xwjLLx"
+      "preprodGccWf5cqtgX4hp0kTJIV4KJQ81xwjLLx",
     ),
-    "Preprod"
+    "Preprod",
   );
 
   // Generate a new private key (bech32-encoded) and select it
