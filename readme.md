@@ -45,6 +45,26 @@ metadata:
 deno run -A --unstable --node-modules-dir=manual sendTransaction.ts
 ```
 
+## Test
+
+Test all:
+
+```
+npm run test:all
+```
+
+Test wallet creation:
+
+```
+npm run test:deno
+```
+
+Test proof requesting:
+
+```
+npm run test:node
+```
+
 ## Metadata example
 
 https://preprod.cexplorer.io/tx/c36ba27f9124ec345b3a54bde3212aef834f91e203d2c8bf32a2f1f474ac5b4f/metadata#data

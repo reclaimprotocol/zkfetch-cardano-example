@@ -1,7 +1,7 @@
 import { ReclaimClient } from "@reclaimprotocol/zk-fetch";
 import fs from "fs";
 
-async function main() {
+export async function main(path = "proof.json") {
   try {
     const APP_ID = "0x381994d6B9B08C3e7CfE3A4Cd544C85101b8f201";
     const APP_SECRET =
@@ -30,7 +30,7 @@ async function main() {
       },
     );
 
-    fs.writeFileSync("proof.json", JSON.stringify(proof));
+    fs.writeFileSync(path, JSON.stringify(proof));
     process.exit(0);
   } catch (e) {
     console.error("Error requesting proof:", e.message);

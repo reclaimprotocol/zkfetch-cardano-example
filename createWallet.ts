@@ -2,7 +2,7 @@ import { Blockfrost, Lucid } from "https://deno.land/x/lucid@0.10.11/mod.ts";
 
 import fs from "node:fs";
 
-async function main() {
+export async function main(path: string = "addressDetails.json") {
   const addressDetails = {
     privateKey: "",
     address: "",
@@ -26,7 +26,7 @@ async function main() {
 
   addressDetails.address = address;
 
-  fs.writeFileSync("addressDetails.json", JSON.stringify(addressDetails));
+  fs.writeFileSync(path, JSON.stringify(addressDetails));
 }
 
 if (import.meta.main) {
