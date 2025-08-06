@@ -56,13 +56,19 @@ npm run test:all
 Test wallet creation:
 
 ```
-npm run test:deno
+npm run test:wallet
 ```
 
 Test proof requesting:
 
 ```
-npm run test:node
+npm run test:request
+```
+
+Test proof components and signature recovery:
+
+```
+npm run test:proof
 ```
 
 ## Metadata example

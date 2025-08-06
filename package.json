@@ -1,11 +1,13 @@
 {
   "type": "module",
   "dependencies": {
-    "@reclaimprotocol/zk-fetch": "^0.3.1"
+    "@reclaimprotocol/zk-fetch": "^0.3.1",
+    "ethereum-cryptography": "^3.2.0"
   },
   "scripts": {
-    "test:node": "node --test tests/requestProof.test.js",
-    "test:deno": "deno test tests/wallet.test.ts --allow-net --allow-write --allow-read",
-    "test:all": "npm run test:node && npm run test:deno"
+    "test:request": "node --test tests/requestProof.test.js",
+    "test:wallet": "deno test tests/wallet.test.ts --allow-net --allow-write --allow-read",
+    "test:proof": "deno test tests/proof.test.ts --allow-net --allow-write --allow-read --allow-env",
+    "test:all": "npm run test:request && npm run test:wallet && npm run test:proof"
   }
 }
