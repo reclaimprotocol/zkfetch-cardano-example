@@ -102,3 +102,17 @@ const proof = await reclaimClient.zkFetch(
   },
 );
 ```
+
+More data feeds to try:
+
+https://tradingeconomics.com/api/?source=footer
+
+https://www.pandascore.co/
+
+https://publicapis.io/panda-score-api
+
+https://www.thesports.com/
+
+https://open-meteo.com/
+
+https://www.census.gov/data/developers/data-sets/economic-census.html 
