@@ -36,7 +36,8 @@ export async function runCompleteWorkflow(): Promise<void> {
     console.log("Workflow completed successfully!");
     console.log(`Transaction Hash: ${txHash}`);
   } catch (error) {
-    console.error("Workflow failed:", error.message);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error("Workflow failed:", errorMessage);
     throw error;
   }
 }

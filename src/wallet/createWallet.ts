@@ -59,7 +59,8 @@ export async function createWallet(
 
     return addressDetails;
   } catch (error) {
-    console.error("Error creating wallet:", error.message);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error("Error creating wallet:", errorMessage);
     throw error;
   }
 }

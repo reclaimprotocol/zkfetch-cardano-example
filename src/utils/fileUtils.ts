@@ -12,7 +12,8 @@ export async function readJsonFile<T>(filePath: string): Promise<T> {
     const content = await Deno.readTextFile(filePath);
     return JSON.parse(content) as T;
   } catch (error) {
-    throw new Error(`Failed to read JSON file ${filePath}: ${error.message}`);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    throw new Error(`Failed to read JSON file ${filePath}: ${errorMessage}`);
   }
 }
 
@@ -27,7 +28,8 @@ export async function writeJsonFile<T>(
     const content = JSON.stringify(data, null, 2);
     await Deno.writeTextFile(filePath, content);
   } catch (error) {
-    throw new Error(`Failed to write JSON file ${filePath}: ${error.message}`);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    throw new Error(`Failed to write JSON file ${filePath}: ${errorMessage}`);
   }
 }
 

@@ -84,7 +84,8 @@ export async function sendTransaction(
 
     return txHash;
   } catch (error) {
-    console.error("Error sending transaction:", error.message);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error("Error sending transaction:", errorMessage);
     throw error;
   }
 }
