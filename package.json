@@ -1,13 +1,50 @@
 {
+  "name": "zkfetch-cardano-example",
+  "version": "1.0.0",
+  "description": "Example illustrating how to store Reclaim proofs' identifiers and responses on Cardano",
   "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "deno run --watch --allow-net --allow-write --allow-read --allow-env src/index.ts",
+    "build": "deno check src/**/*.ts",
+    "start": "deno run --allow-net --allow-write --allow-read --allow-env src/index.ts",
+    "create-wallet": "deno run --allow-net --allow-write --allow-read --allow-env src/wallet/createWallet.ts",
+    "request-proof": "node requestProof.js",
+    "send-transaction": "deno run --allow-net --allow-write --allow-read --allow-env src/transaction/sendTransaction.ts",
+    "test": "deno test --allow-net --allow-write --allow-read --allow-env",
+    "test:wallet": "deno test tests/wallet.test.ts --allow-net --allow-write --allow-read",
+    "test:proof": "deno test tests/proof.test.ts --allow-net --allow-write --allow-read --allow-env",
+    "test:integration": "deno test tests/integration.test.ts --allow-net --allow-write --allow-read --allow-env",
+    "test:request": "node --test tests/requestProof.test.js",
+    "test:all": "npm run test:request && npm run test:wallet && npm run test:proof && npm run test:integration",
+    "lint": "deno lint src/ tests/",
+    "format": "deno fmt src/ tests/",
+    "format:check": "deno fmt --check src/ tests/",
+    "clean": "rm -f addressDetails.json proof.json"
+  },
   "dependencies": {
     "@reclaimprotocol/zk-fetch": "^0.3.1",
     "ethereum-cryptography": "^3.2.0"
   },
-  "scripts": {
-    "test:request": "node --test tests/requestProof.test.js",
-    "test:wallet": "deno test tests/wallet.test.ts --allow-net --allow-write --allow-read",
-    "test:proof": "deno test tests/proof.test.ts --allow-net --allow-write --allow-read --allow-env",
-    "test:all": "npm run test:request && npm run test:wallet && npm run test:proof"
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0"
+  },
+  "keywords": [
+    "cardano",
+    "reclaim",
+    "zk-fetch",
+    "blockchain",
+    "proof",
+    "oracle"
+  ],
+  "author": "Hadi Saleh",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/zkfetch-cardano-example.git"
   }
 }

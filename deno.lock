@@ -180,7 +180,12 @@
     "packageJson": {
       "dependencies": [
         "npm:@reclaimprotocol/zk-fetch@~0.3.1",
-        "npm:ethereum-cryptography@^3.2.0"
+        "npm:@types/node@20",
+        "npm:@typescript-eslint/eslint-plugin@6",
+        "npm:@typescript-eslint/parser@6",
+        "npm:eslint@8",
+        "npm:ethereum-cryptography@^3.2.0",
+        "npm:prettier@3"
       ]
     }
   }

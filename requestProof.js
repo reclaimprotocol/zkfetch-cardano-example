@@ -1,5 +1,6 @@
 import { ReclaimClient } from "@reclaimprotocol/zk-fetch";
 import fs from "fs";
+import process from "node:process";
 
 export async function main(path = "proof.json") {
   try {

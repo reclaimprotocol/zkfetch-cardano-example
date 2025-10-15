@@ -34,8 +34,7 @@ Deno.test("Proof should have the correct ETH witness address", async () => {
   // Remove the 0x and recovery id
   const sig = hex(proof.signatures[0].slice(2).slice(0, -2));
 
-  const serilaizedClaim =
-    proof.identifier +
+  const serilaizedClaim = proof.identifier +
     "\n" +
     proof.claimData.owner +
     "\n" +
@@ -51,7 +50,7 @@ Deno.test("Proof should have the correct ETH witness address", async () => {
 
   const compressedHex = pubKeyCompressed.toHex();
   const compressedBytes = new Uint8Array(
-    compressedHex.match(/.{2}/g)!.map((byte) => parseInt(byte, 16))
+    compressedHex.match(/.{2}/g)!.map((byte) => parseInt(byte, 16)),
   );
 
   // Decompress using noble-secp256k1
@@ -76,7 +75,7 @@ Deno.test("Proof should have required fields", async () => {
   assert(proof.signatures.length > 0, "Proof should have signatures");
   assertExists(
     proof.extractedParameterValues,
-    "Missing extractedParameterValues"
+    "Missing extractedParameterValues",
   );
   assertExists(proof.extractedParameterValues.price, "Missing price field");
 });
@@ -95,7 +94,7 @@ Deno.test("Epoch should be a positive integer", async () => {
   const epoch = proof.claimData.epoch;
   assert(
     typeof epoch === "number" && Number.isInteger(epoch),
-    "Epoch should be an integer"
+    "Epoch should be an integer",
   );
   assertGreater(epoch, 0, "Epoch should be greater than zero");
 });
@@ -111,7 +110,7 @@ Deno.test(
     const now = Math.floor(Date.now() / 1000);
     assert(timestamp > 0, "Timestamp should be positive");
     assert(timestamp <= now + 300, "Timestamp should not be far in the future");
-  }
+  },
 );
 
 Deno.test("Provider should be 'http' or 'https'", async () => {
@@ -121,7 +120,7 @@ Deno.test("Provider should be 'http' or 'https'", async () => {
   assert(typeof provider === "string", "Provider must be a string");
   assert(
     ["http", "https"].includes(provider),
-    "Provider must be 'http' or 'https'"
+    "Provider must be 'http' or 'https'",
   );
 });
 
@@ -137,13 +136,13 @@ Deno.test("Witnesses should be non-empty and valid", async () => {
     assertMatch(
       witness.id,
       /^0x[a-fA-F0-9]{40}$/,
-      "Witness id should be a valid Ethereum address"
+      "Witness id should be a valid Ethereum address",
     );
     assertExists(witness.url, "Each witness must have a url");
     assertStringIncludes(
       witness.url,
       "wss://",
-      "Witness URL should start with wss://"
+      "Witness URL should start with wss://",
     );
   }
 });
@@ -163,10 +162,10 @@ Deno.test("Parameters should be valid JSON with expected fields", async () => {
   assertExists(parameters.url, "parameters should have url");
   assertExists(
     parameters.responseMatches,
-    "parameters should have responseMatches"
+    "parameters should have responseMatches",
   );
   assert(
     Array.isArray(parameters.responseMatches),
-    "responseMatches should be an array"
+    "responseMatches should be an array",
   );
 });

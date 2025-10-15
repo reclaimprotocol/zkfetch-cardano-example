@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, it } from "jsr:@std/testing/bdd";
 import { expect } from "jsr:@std/expect";
-import { main } from "../createWallet.ts";
+import { createWallet } from "../src/wallet/createWallet.ts";
 
 // Define the path for the temporary file
 const WALLET_FILE_PATH = "./tests/addressDetails.json";
@@ -27,7 +27,7 @@ describe("Wallet Creation (Deno)", () => {
   });
 
   it("should create a wallet file", async () => {
-    await main(WALLET_FILE_PATH);
+    await createWallet(WALLET_FILE_PATH);
     const fileInfo = await Deno.stat(WALLET_FILE_PATH);
     expect(fileInfo.isFile).toBeTruthy();
     expect(fileInfo.size).toBeGreaterThan(0);
@@ -35,7 +35,7 @@ describe("Wallet Creation (Deno)", () => {
 
   it("should create a valid ed25519 private key", async () => {
     const prefix = "ed25519";
-    await main(WALLET_FILE_PATH); // Run main to generate the wallet
+    await createWallet(WALLET_FILE_PATH); // Run createWallet to generate the wallet
     const stringData = await Deno.readTextFile(WALLET_FILE_PATH);
     const jsonData = JSON.parse(stringData);
 
@@ -45,7 +45,7 @@ describe("Wallet Creation (Deno)", () => {
 
   it("should create a valid test address", async () => {
     const prefix = "addr_test";
-    await main(WALLET_FILE_PATH);
+    await createWallet(WALLET_FILE_PATH);
     const stringData = await Deno.readTextFile(WALLET_FILE_PATH);
     const jsonData = JSON.parse(stringData);
 
@@ -54,7 +54,7 @@ describe("Wallet Creation (Deno)", () => {
   });
 
   it("should create a wallet with expected JSON structure", async () => {
-    await main(WALLET_FILE_PATH);
+    await createWallet(WALLET_FILE_PATH);
     const stringData = await Deno.readTextFile(WALLET_FILE_PATH);
     const jsonData = JSON.parse(stringData);
 
