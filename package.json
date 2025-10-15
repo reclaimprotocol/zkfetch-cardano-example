@@ -15,7 +15,7 @@
     "test:wallet": "deno test tests/wallet.test.ts --allow-net --allow-write --allow-read --allow-env",
     "test:proof": "deno test tests/proof.test.ts --allow-net --allow-write --allow-read --allow-env",
     "test:integration": "deno test tests/integration.test.ts --allow-net --allow-write --allow-read --allow-env",
-    "test:request": "node --test tests/requestProof.test.js",
+    "test:request": "node --test tests/requestProof.test.js && rm -f test-proof.json",
     "test:all": "npm run test:request && npm run test:wallet && npm run test:proof && npm run test:integration",
     "lint": "deno lint src/ tests/",
     "format": "deno fmt src/ tests/",
