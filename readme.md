@@ -63,9 +63,33 @@ deno run --allow-net --allow-write --allow-read --allow-env src/wallet/createWal
 
 3. **Request a proof**:
 ```bash
+# ADA price proof (default)
 npm run request-proof
 # or
 node requestProof.js
+
+# Sports scores proof
+npm run request-proof-sports
+# or
+node requestProof.js sports-proof.json sports
+
+# GDP data proof
+npm run request-proof-gdp
+# or
+node requestProof.js gdp-proof.json gdp
+
+# Forbes billionaires proof
+npm run request-proof-forbes
+# or
+node requestProof.js forbes-proof.json forbes
+
+# Weather data proof
+npm run request-proof-weather
+# or
+node requestProof.js weather-proof.json weather
+
+# Custom usage
+node requestProof.js [output-file] [data-source]
 ```
 
 4. **Send transaction**:
@@ -174,22 +198,48 @@ https://preprod.cexplorer.io/tx/c36ba27f9124ec345b3a54bde3212aef834f91e203d2c8bf
 
 ### Alternative Data Sources
 
-Here are some other data sources you can try:
+The `requestProof.js` script now supports multiple data sources:
 
-```typescript
-// Sports scores
-const proof = await reclaimClient.zkFetch(
-  "https://www.goal.com/en-in/live-scores",
-  { method: "GET" },
-  {
-    responseMatches: [
-      {
-        type: "regex",
-        value: '<div class="fco-match-team-and-score">.*?<div class="fco-team-name fco-long-name">(?<team1>.*?)</div>.*?<div class="fco-team-name fco-long-name">(?<team2>.*?)</div>.*?<div class="fco-match-score" data-side="team-a">(?<score1>\\d+)</div>\\s*<div class="fco-match-score" data-side="team-b">(?<score2>\\d+)</div>',
-      },
-    ],
-  },
-);
+**ADA Price (Default)**:
+```bash
+node requestProof.js
+```
+
+**Sports Scores from Goal.com** (Note: May require additional setup):
+```bash
+node requestProof.js sports-proof.json sports
+```
+
+**GDP Data from Trading Economics** (Note: May require additional setup):
+```bash
+node requestProof.js gdp-proof.json gdp
+```
+
+**Forbes Billionaires Data**:
+```bash
+node requestProof.js forbes-proof.json forbes
+```
+
+**Weather Data from AccuWeather**:
+```bash
+node requestProof.js weather-proof.json weather
+```
+
+**Custom Usage**:
+```bash
+node requestProof.js [output-file] [data-source]
+```
+
+Available data sources:
+- `ada` - Fetch ADA price from CoinGecko (default)
+- `sports` - Fetch live sports scores from Goal.com
+- `gdp` - Fetch GDP data from Trading Economics
+- `forbes` - Fetch Forbes billionaires data
+- `weather` - Fetch weather data from AccuWeather
+
+For help and more examples:
+```bash
+node requestProof.js --help
 ```
 
 ### Additional Data Feeds
