@@ -25,9 +25,9 @@ git clone https://github.com/reclaimprotocol/zkfetch-cardano-example
 cd zkfetch-cardano-example
 ```
 
-2. Install dependencies:
+2. Install dependencies and download zk files (this takes some time):
 ```bash
-npm install
+npm install && npm run download-zk-files
 ```
 
 3. (Optional) Set up custom environment variables:

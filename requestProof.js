@@ -175,7 +175,7 @@ export async function main(path = "proof.json", dataSource = "ada") {
       );
     }
 
-    fs.writeFileSync(path, JSON.stringify(proof));
+    fs.writeFileSync(path, JSON.stringify(proof, null, 2));
     console.log(`Proof saved to: ${path}`);
     process.exit(0);
   } catch (e) {

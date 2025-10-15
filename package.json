@@ -24,6 +24,7 @@
     "lint": "deno lint src/ tests/",
     "format": "deno fmt src/ tests/",
     "format:check": "deno fmt --check src/ tests/",
+    "download-zk-files": "node node_modules/@reclaimprotocol/zk-symmetric-crypto/lib/scripts/download-files",
     "clean": "rm -f addressDetails.json proof.json"
   },
   "dependencies": {
