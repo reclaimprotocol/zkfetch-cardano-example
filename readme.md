@@ -242,12 +242,33 @@ For help and more examples:
 node requestProof.js --help
 ```
 
-### Additional Data Feeds
+## Additional Data Sources
 
-- [Trading Economics API](https://tradingeconomics.com/api/?source=footer)
-- [PandaScore API](https://www.pandascore.co/)
-- [Open Meteo Weather API](https://open-meteo.com/)
-- [US Census Data](https://www.census.gov/data/developers/data-sets/economic-census.html)
+
+| Name | Endpoint | Regex | extractedParameterValues Example | Use Case (Data Fetched) |
+|:-----------|:-----------------|:--------------|:--------------|:--------------|
+| Real-time AQI | https://www.aqi.in/in/dashboard/united-states | `<span[^>]*>(?<aqi>\\d+)\\s*<span` | `{ aqi: '31' }` | United States Air Quality Index |
+| Coinmarketcap | https://coinmarketcap.com/ | `<div class="circulating-supply-value">\\s*<span>(?<cap>[0-9]+(?:\\.[0-9]+)?[A-Za-z]?)</span>\\s*<!-- -->BTC` | `{ cap: '19.96M' }` | Bitcoin's Circulating Supply |
+| Yahoo Finance | https://finance.yahoo.com/markets/stocks/most-active/ | `<fin-streamer data-test="change" data-symbol="NVDA" data-field="marketCap" data-trend="none" data-value="4261212044021.6064" active="">(?<marketCap>[0-9]+(?:\\.[0-9]+)?[A-Za-z]?)</fin-streamer>` | `{ marketCap: '4.261T' }` | Most Active Stock's Market Cap |
+| Github |  'https://github.com/torvalds/linux' | `<span[^>]*class="[^"]*js-social-count[^"]*"[^>]*>\s*(?<stars>[0-9]+(?:\.[0-9]+)?[kKmM]?)\s*</span>` | `{ stars: '211k' }` | Repository Stars |
+| Internet Live Stats | https://www.internetlivestats.com/total-number-of-websites/ | `<td class="val">(?<websites>[0-9,]+)</td>` | `{ websites: '1,630,322,579' }` | Total Number of Registered Websites |
+| Flightware | https://www.flightaware.com/resources/airport/KJFK/weather | `<td class="alignleft weatherTemperature" style="width: 79px" >(?<temparature>.*?)</td>` | `{ temparature: '21' }` | Airports Weather |
+| Social Counts | https://socialcounts.org/youtube-live-subscriber-count/UCX6OQ3DkcsbYNE6H8uQQuVA | `<<div class=\"tracking-tight text-gray-900 dark:text-white text-xl\">(?<count>.*?)</div>` | `{ count: '103,488,793,716' }` | Youtubers Subscription Counts |
+| Planet OSM | https://planet.openstreetmap.org/statistics/data_stats.html | `<tr>\s*<td>[^<]+</td>\s*<td>(?<users>[0-9]+)</td>` | `{ users: '10045083' }` | OpenStreetMap User Count |
+| Rotten Tomatoes | https://www.rottentomatoes.com/browse/tv_series_browse/sort:popular | `<span class="p--small" data-qa="discovery-media-list-item-title">\s*(?<show>[^\s].*?[^\s])\s*</span>` | `{ show: 'Pluribus' }` | Rotten Tomatoes Top Show |
+| Solana | https://status.solana.com/ | `<h2[^>]*class="status[^"]*"[^>]*>\s*(?<status>[^<]+?)\s*</h2>` | `{ status: 'All Systems Operational' }` | Solana Systems Operational Status |
+| Speedtest | https://www.speedtest.net/global-index | `<span class="number">(?<mobileSpeed>[0-9.]+)</span>` | `{ mobileSpeed: '179.55' }` | SpeedTest Mobile Speed Metrics |
+| ARXIV | https://arxiv.org/abs/2305.17989| `<meta[^>]*property="og:title"[^>]*content="(?<title>[^"]+)"` | `{title: 'On the Minimal Knowledge Required for Solving Stellar Consensus'` | Research Papers Titles |
+| NPM Registry | https://www.npmjs.com/package/@stellar/stellar-sdk | `<p class="f2874b88 fw6 mb3 mt2 truncate black-80 f4">(?<version>[0-9.]+)</p>` | `{ version: '14.4.2' }` | Stellar JS SDK Version |
+| Unix Timestamp | https://www.unixtimestamp.com/| `<div[^>]*class="value epoch"[^>]*>\\s*(?<timestamp>[0-9]+)\\s*</div>` | `{ timestamp: '1765773231' }` | Unix Timestamps - Seconds |
+| Wikipedia | https://en.wikipedia.org/wiki/Special:Statistics | `<td[^>]*class="mw-statistics-numbers"[^>]*>\s*(?<count>[0-9,]+)\s*</td>` | `{ count: '7,105,949' }` | Content Pages Count |
+| Worldometers | https://www.worldometers.info/geography/countries-of-the-world/ | `<td[^>]*data-order="\\d+"[^>]*>\\s*(?<population>[0-9,]+)\\s*</td>` | `{ population: '1,463,865,525' }` | Top Country Population |
+| Random Number API | https://www.randomnumberapi.com/api/v1.0/random?min=1&max=100&count=1 | `\\[(?<data>\\d+)\\]` | `{ data: '34' }` | RNG Results |
+| Github API | https://api.github.com/rate_limit | `\"rate\"\\s*:\\s*\\{[\\s\\S]*?\"limit\"\\s*:\\s*(?<limit>\\d+),[\\s\\S]*?\"remaining\"\\s*:\\s*(?<remaining>\\d+),[\\s\\S]*?\"reset\"\\s*:\\s*(?<reset>\\d+),[\\s\\S]*?\"used\"\\s*:\\s*(?<used>\\d+),[\\s\\S]*?\"resource\"\\s*:\\s*\"(?<resource>[^\"]+)\"` | `{limit: '60', remaining: '60',reset: '1765806768',resource: 'core',used: '0'}` | Github API Rate Limit Control - Requests per Hour |
+| USGS Earthquake | https://earthquake.usgs.gov/fdsnws/event/1/count?format=geojson | `\"count\"\\s*:\\s*(?<count>\\d+)` | `{ count: '9077' }` | Number of Earthquake Events |
+| OpenDota | https://api.opendota.com/api/proPlayers | `\"steamid\"\\s*:\\s*\"(?<steamId>\\d+)\"[\\s\\S]*?\"personaname\"\\s*:\\s*\"(?<name>[^\"]+)\"[\\s\\S]*?\"loccountrycode\"\\s*:\\s*\"(?<country>[A-Z]{2})\"` | `{ country: 'US', name: 'Newsham', steamId: '76561197961562353' }` | Dota Top Player Information |
+| Postman Echo | https://postman-echo.com/get | `\"user-agent\"\\s*:\\s*\"(?<userAgent>[^\"]+)\"` | `{ userAgent: 'reclaim/0.0.1' }` | Request Sender User Agent |
+| Crossref | https://api.crossref.org/works/10.1038/nature12373 | `\"reference-count\"\\s*:\\s*(?<referenceCount>\\d+)` | `{ referenceCount: '30' }` | Research Papers Crossed Reference Counts |
 
 ## Contributing
 
