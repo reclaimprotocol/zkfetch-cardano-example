@@ -192,7 +192,7 @@ The application uses sensible defaults for all public credentials. You can optio
 ## Example Transaction
 
 View a real example transaction with metadata:
-https://preprod.cexplorer.io/tx/c36ba27f9124ec345b3a54bde3212aef834f91e203d2c8bf32a2f1f474ac5b4f/metadata#data
+https://preprod.cexplorer.io/tx/c36ba27f9124ec345b3a54bde3212aef834f91e203d2c8bf32a2f1f474ac5b4f?tab=metadata
 
 ## Further Exploration
 
