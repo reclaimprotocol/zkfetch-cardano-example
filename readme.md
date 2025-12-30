@@ -133,7 +133,7 @@ zkfetch-cardano-example/
 
 Run all tests:
 ```bash
-npm run test:all
+npm run test
 ```
 
 Run specific test suites:
