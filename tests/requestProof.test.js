@@ -1,6 +1,4 @@
 // requestProof.test.js
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
 import { after, before, describe, test } from "node:test";
 import assert from "node:assert";
 import fs from "node:fs/promises";

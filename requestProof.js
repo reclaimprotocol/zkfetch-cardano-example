@@ -1,5 +1,3 @@
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
 import { ReclaimClient } from "@reclaimprotocol/zk-fetch";
 import fs from "fs";
 import process from "node:process";
@@ -217,4 +215,4 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   }
   
   main(path, dataSource);
-};
+}
